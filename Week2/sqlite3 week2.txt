@@ -1,0 +1,85 @@
+1)
+create table stud(id int primary key,name char[30]);
+sqlite> insert into stud values(1,"om"),(2,"sai"),(3,"ram"),(4,"seeta"),(5,"dev");
+sqlite> insert into stud values(6,"bhargav"),(7,"shiv"),(8,"savu"),(9,"deep"),(10,"raj");
+
+
+sqlite> .mode box
+sqlite> select * from stud;
++--------------+
+¦ id ¦  name   ¦
++----+---------¦
+¦ 1  ¦ om      ¦
+¦ 2  ¦ sai     ¦
+¦ 3  ¦ ram     ¦
+¦ 4  ¦ seeta   ¦
+¦ 5  ¦ dev     ¦
+¦ 6  ¦ bhargav ¦
+¦ 7  ¦ shiv    ¦
+¦ 8  ¦ savu    ¦
+¦ 9  ¦ deep    ¦
+¦ 10 ¦ raj     ¦
++--------------+
+
+
+
+2)
+create table stud_details(id references stud(id),name char[30],city char[35],mobile_no int);
+sqlite> insert into stud_details values(1,"dev","bardoli",6353550544);
+sqlite> insert into stud_details values(2,"om","buhari",6354365367);
+sqlite> insert into stud_details values(3,"sai","surat",9976535786);
+sqlite> insert into stud_details values(4,"ram","kharvasha",9987345673);
+sqlite> insert into stud_details values(4,"yug","vyara",9875345637);
+sqlite> insert into stud_details values(6,"ritik","bardoli",9145342654);
+sqlite> insert into stud_details values(7,"harsh","bardoli",8465436783);
+sqlite> insert into stud_details values(8,"krunal","surat",6543678654);
+sqlite> insert into stud_details values(9,"raj","vyara",7654367654);
+sqlite> insert into stud_details values(10,"rajveer","buhari",8763456432);
+
+
+
+sqlite> .mode table
+sqlite> select * from stud_details
+   ...> ;
++----+---------+-----------+------------+
+| id |  name   |   city    | mobile_no  |
++----+---------+-----------+------------+
+| 1  | dev     | bardoli   | 6353550544 |
+| 2  | om      | buhari    | 6354365367 |
+| 3  | sai     | surat     | 9976535786 |
+| 4  | ram     | kharvasha | 9987345673 |
+| 5  | yug     | vyara     | 9875345637 |
+| 6  | ritik   | bardoli   | 9145342654 |
+| 7  | harsh   | bardoli   | 8465436783 |
+| 8  | krunal  | surat     | 6543678654 |
+| 9  | raj     | vyara     | 7654367654 |
+| 10 | rajveer | buhari    | 8763456432 |
++----+---------+-----------+------------+
+
+
+
+3)
+ select * from stud_details where city="surat";
++----+--------+-------+------------+
+| id |  name  | city  | mobile_no  |
++----+--------+-------+------------+
+| 3  | sai    | surat | 9976535786 |
+| 8  | krunal | surat | 6543678654 |
++----+--------+-------+------------+
+
+4)
+select * from stud_details where city like 'b%';
++----+---------+---------+------------+
+| id |  name   |  city   | mobile_no  |
++----+---------+---------+------------+
+| 1  | dev     | bardoli | 6353550544 |
+| 2  | om      | buhari  | 6354365367 |
+| 6  | ritik   | bardoli | 9145342654 |
+| 7  | harsh   | bardoli | 8465436783 |
+| 10 | rajveer | buhari  | 8763456432 |
++----+---------+---------+------------+
+
+5)
+update stud_detail set mobile_no4567654345 where city='surat';
+
+
